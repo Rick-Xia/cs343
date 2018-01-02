@@ -1,2 +1,2 @@
 # cs343
-Concurrency assigns &amp; proj
+Concurrency assigns
