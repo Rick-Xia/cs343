@@ -1,0 +1,134 @@
+Cardgame Test Documentation (Q2)
+=================================
+This program simulates a card game using given
+settings or settings randomly generated.
+
+
+User Interface Testing:
+    There is no user interface to be tested, so the testing focuses
+    solely on the algorithm used for the conversion.
+
+ALGORITHM TESTING
+
+  TEST 1:
+  -------
+    DATA DESCRIPTION
+    We feed the program with different input, and check whether
+    the program will have the output as expected:
+
+    1 Script started on Sun Oct 08 10:53:45 2017
+    2 @ubuntu1604-006% ./cardgame 1 2 20 2134
+    Players: 2    Cards: 20
+    P0      P1
+    2:18>   8:10>
+    5:5<    4:1<
+    1:0#
+    3 @ubuntu1604-006% ./cardgame 2 5 200 5
+    Players: 5    Cards: 200
+    P0      P1      P2      P3      P4
+    8:192>  7:185<
+    6:179<          3:160>  8:163<  8:171<
+                     6:147<  7:153<
+    D       D       D       D       D
+    4:135<  5:142>X 3:139<  6:127<X 2:133<
+                    1:126>          1:125<X
+    3:117<          5:120>
+    8:101<          8:109<
+    6:89<           6:95<
+    3:84>           2:87<
+    #80#            4:80>X
+
+
+    Players: 5    Cards: 200
+    P0      P1      P2      P3      P4
+    1:199<                          5:194>
+    2:192>  5:187<
+    6:181<                          1:180>
+    7:173<                          3:170>
+    D       D       D       D       D
+    5:165<                          3:162>
+    1:161<                          1:160>X
+    8:152>  2:150>  5:145<
+    2:139<  4:141<  3:130>X 6:133<
+    7:121<                  2:128>
+            5:112>          4:117<
+    D       D               D
+    3:105<  3:108>          1:111<X
+    D       D
+    #97#    8:97<X
+    4 @ubuntu1604-006% ./cardgame 4 2 200 1
+    Players: 2    Cards: 200
+    P0      P1
+    8:190>  2:198>
+    2:186>  2:188>
+    7:177<  2:184>
+    2:173<X 2:175<
+            #173#
+
+
+    Players: 2    Cards: 200
+    P0      P1
+    6:194>  7:187<
+    6:181<  4:177<
+    2:175<  7:168>X
+    #168#X
+
+
+    Players: 2    Cards: 200
+    P0      P1
+    3:197<  5:192>
+    6:186>  2:184>
+    2:182>  3:179<X
+    #179#
+
+
+    Players: 2    Cards: 200
+    P0      P1
+    2:197<  1:199<
+            1:196>
+    D       D
+    8:188>X #188#
+    5 script done on Sun Oct 08 10:55:02 2017
+
+
+    ANALYSIS
+      The results from running the program on given input show that:
+      1) The program can run normally on various settings, and successfully
+         keep the stability of internal full corotine path
+      2) The Schmilblick exception can be handled as expected, and the
+         normal game play is not disturbed at all.
+      3) Compared to the sample executable, the output is exactly the same,
+         indicating the random number in the program is implemented correctly.
+
+      From this we can say that each condition in the main loop has been
+      exercised, and the basic cardgame algorithm has been shown to be correct.
+
+  TEST 2:
+  -------
+    DATA DESCRIPTION
+    I am going to feed the programe with illegal input. It is to verify that
+    the programe can detect input error promptly.
+
+
+  TESTING
+    Here is the script-fixed log of the testing performed with line numbers
+    attached.
+
+    1 Script started on Sun Oct 08 11:02:05 2017
+    2 @ubuntu1604-006% ./cardgame -1
+    Usage: ./q2example [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+    3 @ubuntu1604-006% ./cardgame 1 1
+    Usage: ./q2example [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+    4 @ubuntu1604-006% ./cardgame 1 2 0
+    Usage: ./q2example [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+    5 @ubuntu1604-006% ./cardgame 1 2 20 -1
+    Usage: ./q2example [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+    6 @ubuntu1604-006% ./cardgame 1 5 200 13213123213123123123123
+    Usage: ./q2example [ games (>= 0) | "x" [ players (>= 2) | "x" [ cards (> 0) | "x" [ random-seed (> 0) | "x" ] ] ] ]
+    7 Script done on Sun Oct 08 11:04:13 2017
+
+    ANALYSIS
+    The results show that the program can detect illegal input and output
+    correct warning message. Line 6 reviles that even the input satisfies
+    the requirement, it will still be rejected if it breaks internal functions.
+    Thus the basic input processing algorithm is shown to be correct.

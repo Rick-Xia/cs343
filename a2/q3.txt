@@ -1,0 +1,51 @@
+(a) Show the 10 results from each version of the program
+Multi-core version:
+    1 shared:9753838
+    2 shared:10180375
+    3 shared:10157327
+    4 shared:10148232
+    5 shared:10125407
+    6 shared:10176931
+    7 shared:10033521
+    8 shared:10313822
+    9 shared:10051944
+    10 shared:10084704
+
+Single-core version:
+    1 shared:20000000
+    2 shared:20000000
+    3 shared:20000000
+    4 shared:20000000
+    5 shared:20000000
+    6 shared:20000000
+    7 shared:20000000
+    8 shared:20000000
+    9 shared:20000000
+    10 shared:20000000
+
+(b) Must all 10 runs for each version produce the same result? Explain your answer
+  The single-core version must produce the same result. Because all increments happen
+   in order, so the "shared" will always receive 20000000 increments
+  But the mult-core ersion need not ttto produce the same result. Because the running
+   off multi thread is unpredictable, we cannot ensure there is a certain number of
+   increments the "shared" will rececive.
+
+(c) In theory, what are the smallest and largest values that could be printed out by this program with an argument of 10000000? Explain your answers.
+  The smallest output should be 2. The situation happens when the first thread's first
+   increment pause and then the second thread start to increment until its second last
+   one. Then the program jump back to the first thread, and all increments made by the
+   second thread get overwritten by the first thread's first increment. Next, the second
+   thread start to execute the last increment and puase in the middle, and the first
+   thread start to execute remaining increments. After all increments finished in the
+   first thread, the program jump back to the last increment of the second thread,
+   and all increments made by the first thread get overwritten by the last increment of
+   the second thread. Thus, in this situation, there are only 2 increment ( the first
+   increment of the first thread and the last increment of the second thread) successfully
+   made change to "shared", so the smallest output should be 2.
+
+  The largest output should be 20000000 as the output of the single-core version. This
+   situation happens when all increments count. Obviously this should be the largest output.
+
+(d) Explain the difference in the size of the values between the uniprocessor and multiprocessor output
+  By average there is 1 increment get oerwritten in every 2 increments, so the size of
+   the value multiprocessor output is about half of that of the uniprocessor output.

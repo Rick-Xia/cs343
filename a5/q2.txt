@@ -1,0 +1,18 @@
+The weeping angels are in a deadlock, while I think it can be a livelock.
+For angels to move, the lock "no one is looking" must be available. As soon as the lock is unavailable, the angels
+ will be block and cannot continue moving.
+This is the scenario at the climax: angels A, B, C , and D are looking at each other, forming a chain, where
+    1. A looks at B;
+    2. B looks at C;
+    3. C looks at D;
+    4. D looks at A.
+Since every angel has another angel looking at it, no angel can move. This situation is a deadlock, because
+ for an angel X to move, the other angel Y who is looking at X need to move first so that Y can move its
+ eyesight from X. However, Y is unable to move as it requires another angel to move first, which will eventually
+ form a chain of prerequisits: A requires D requires C requires B requires A. Hence, it is a deadlock as every
+ angel is waiting for the move of another angel, who is also waiting for the move of the former angel.
+
+However, with assistance outside angels, I think the situation can be a livelock. For example, if one of the
+ two character stands in front of an angel, say A, blocking the eyesight of the A. Then, B will be able to move
+ as A now is not looking at it; the lock "no one is looking" is released by the character blocking the eyesight
+ of A. Now the lock is broken and hence it is a livelock with the help of another character.

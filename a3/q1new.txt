@@ -1,0 +1,37 @@
+(a) Record 12 timing result of 4 versions:
+    executable ./q1noflag, ./q1darray, ./q1vec1, ./q1vec2 are corresponding to the respective version
+
+    1 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1noflag 1 20000000
+    1.31u 0.00s 0:01.31
+    2 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1noflag 2 20000000
+    2.80u 0.00s 0:01.41
+    3 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1noflag 4 20000000
+    5.52u 0.01s 0:01.41
+    4 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1darray 1 20000000
+    1.71u 0.00s 0:01.71
+    5 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1darray 2 20000000
+    23.69u 0.02s 0:11.89
+    6 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1darray 4 20000000
+    105.04u 0.08s 0:27.19
+    7 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec1 1 20000000
+    2.63u 0.00s 0:02.63
+    8 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec1 2 20000000
+    19.88u 0.02s 0:09.96
+    9 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec1 4 20000000
+    98.14u 0.08s 0:25.17
+    10 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec2 1 20000000
+    12.37u 0.02s 0:12.37
+    11 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec2 2 20000000
+    135.58u 0.13s 1:07.85
+    12 @ubuntu1604-002% /usr/bin/time -f "%Uu %Ss %E" ./q1vec2 4 20000000
+    778.22u 1.06s 3:15.09
+
+(b) State the performance difference with respect to scaling the number of tasks for each version.
+    i) for ./q1noflag, there are only subtle difference in the performance between different numbers of tasks.
+    ii) for ./q1darray, between 1 task and 2 tasks there are a big performance difference, and the performance difference between 2 tasks and 4 tasks is not as big.
+    iii) for ./q1vec1, we can see that the grwoth of runtime are close to linear change by approximately 4 times of the former runtime.
+    iv) for ./q1vec2, the performance is poor, amd there are great performance difference between different numbers of tasks.
+
+(c) Very briefly speculate on the performance scaling among the versions.
+    The stack array runs the fastest, and the vector without explicit length runs the slowest. We can see that the more dynamic operation a data stucture needs and more frequently it accesses the heap, the slower it runs.
+

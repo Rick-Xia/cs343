@@ -1,0 +1,124 @@
+Stringliteral Test Documentation (Q3)
+=================================
+This program reads input from either a file
+or from stdin to check if the provided input
+is a valid C++ string literal.
+
+
+User Interface Testing:
+    There is no user interface to be tested, so the testing focuses
+    solely on the algorithm used for the conversion.
+
+ALGORITHM TESTING
+
+  TEST 1:
+  -------
+    DATA DESCRIPTION
+    The first input file used (as a re-direction of standard input), is
+    "q3test1.in".  The contents of the file, with each line numbered, are:
+
+    		1 ""
+		2 U"a?/bc!@#$"
+		3 u"f`;:'|gh123ijk"
+		4 u8"lm%^&*(nopqrs"
+		5 L"tuvw)_+-~"
+		6 u9"drf"
+		7 abs""
+		8            "basic char"
+		9
+		10 "\'\"\?\\\a\b\f\n\r\t\v"
+		11 """
+		12 "\\\"
+		13 "\c"
+		14 "\0000000000"
+		15 "\01234567"
+		16 "\xffffabcceee5678901230"
+		17 "\91234"
+		18 "\xgabbcd123"
+		19 "xyz"abc
+
+    Line 1-5 are used to verify that different prefix combined with basic
+    characters are recognized correctly. Line 6-8 verify that wrong prefix
+    and leading spaces are not recognized. Line 9 verifies the special
+    case for an empty line. Line 10 is used to verify that valid simple-
+    escape-sequence are recognized; while line 11-13 verify that invalid
+    combinations of backslash are not recognized. Besides, line 12 also
+    shows that an unfinished string is simply not recognized, since the
+    backslash + double-quotation is recognized as one character. Line 14-
+    16 verify different type of numbers are recognized; while line 17 and
+    18 verify that invalid octal and hexadecimal numbers are not recognized.
+    Line 19 verifies that the following string to a valid C++ stringliteral
+    remains untouched.
+
+  TESTING
+    Here is the script-fixed log of the testing performed with line numbers
+    attached.
+
+    1 Script started on Sun Sep 24 16:13:42 2017
+    2 @ubuntu1604-002% ./stringliteral q3test1.in
+    3 '""' : '""' yes
+    4 'U"a?/bc!@#$"' : 'U"a?/bc!@#$"' yes
+    5 'u"f`;:'|gh123ijk"' : 'u"f`;:'|gh123ijk"' yes
+    6 'u8"lm%^&*(nopqrs"' : 'u8"lm%^&*(nopqrs"' yes
+    7 'L"tuvw)_+-~"' : 'L"tuvw)_+-~"' yes
+    8 'u9"drf"' : 'u9' no -- extraneous characters '"drf"'
+    9 'abs""' : 'a' no -- extraneous characters 'bs""'
+   10 '           "basic char"' : ' ' no -- extraneous characters '          "basic char"'
+   11 '' : Warning! Blank line.
+   12 '"\'\"\?\\\a\b\f\n\r\t\v"' : '"\'\"\?\\\a\b\f\n\r\t\v"' yes
+   13 '"""' : '""' yes -- extraneous characters '"'
+   14 '"\\\"' : '"\\\"' no
+   15 '"\c"' : '"\c' no -- extraneous characters '"'
+   16 '"\0000000000"' : '"\0000000000"' yes
+   17 '"\01234567"' : '"\01234567"' yes
+   18 '"\xffffabcceee5678901230"' : '"\xffffabcceee5678901230"' yes
+   19 '"\91234"' : '"\9' no -- extraneous characters '1234"'
+   20 '"\xgabbcd123"' : '"\xg' no -- extraneous characters 'abbcd123"'
+   21 '"xyz"abc' : '"xyz"' yes -- extraneous characters 'abc'
+
+  ANALYSIS
+    The results from running the program on "q3test1.in" show that:
+    1)  All basic characters including punctuations and numbers are correctly
+        recognized. This is shown by the output of the contents of line 3 to 7
+        and line 16-18.
+    2)  The results shown in line 8-10 shows that even with valid charcters,
+        wrong prefix or leading spaces are not recognized.
+    3)  All simple-escape-sequence are correctly recognized, as shown in
+        line 12.
+    4)  Invalid escape-sequence ( including number-escape-sequence) are
+        not recognized, as shown in line 13-15 and 19-20.
+    5)  All characters following to a valid C++ stringliteral are left
+    	  untouched shown by the line 21.
+
+    From this we can say that each condition in the main loop has been
+    exercised, and the basic recognition algorithm has been shown to be correct.
+
+  TEST 2:
+  -------
+    DATA DESCRIPTION
+    "q3test2.in", is an empty input file.  It is used to verify that the end
+    of file is detected correctly, and no extraneous output is generated.
+    The file "q3testnotexist.in" does not exist. It is used to verify that the
+    program will exit immediately when inputed by something not existed.
+
+    TESTING
+    Here is the script-fixed log of the testing performed.
+
+       1 Script started on Sun Sep 24 16:33:02 2017
+       2 @ubuntu1604-002% cat q3test2.in
+       3 @ubuntu1604-002% ./stringliteral q3test2.in
+       4 @ubuntu1604-002% ./stringliteral q3testnotexist.in
+       5 Error! Could not open input file "q3testnotexist.in"
+       6 @ubuntu1604-002% ./stringliteral q3test2.in q3testnotexist.in
+       7 Usage: ./stringliteral [infile-file]
+       8 @ubuntu1604-002%
+       9 script done on Sun Sep 24 16:34:20 2017
+
+    ANALYSIS
+    Line 3 runs the program on "q3test2.in" and line 4 shows that the end-of-
+    file is correctly detected, and no extraneous output is generated.
+    Line 4 runs the program on an unexisted file and line 5 shows that it prints
+    the correct error message and exited.
+    Line 6 runs the program with wrong number of commandline argument and line
+    7 shows that it prints the correct instruction message and exited.
+    Thus the basic input processing algorithm is shown to be correct.

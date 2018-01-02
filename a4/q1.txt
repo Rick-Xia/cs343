@@ -1,0 +1,22 @@
+(a) Include 4 timing results to validate the experience.
+    Executables are ./q1noflag, ./q1STR, ./q1Opti, ./q1STROpti
+    The experiments are run with the arguments 10000000 40
+
+    1 @ubuntu1604-008% /usr/bin/time -f "%Uu %Ss %E" ./q1noflag 10000000 40 > /dev/null
+    21.36u 2.13s 0:23.49
+    2 @ubuntu1604-008% /usr/bin/time -f "%Uu %Ss %E" ./q1STR 10000000 40 > /dev/null
+    62.88u 2.22s 1:05.10
+    3 @ubuntu1604-008% /usr/bin/time -f "%Uu %Ss %E" ./q1Opti 10000000 40 > /dev/null
+    20.49u 2.48s 0:22.97
+    4 @ubuntu1604-008% /usr/bin/time -f "%Uu %Ss %E" ./q1STROpti 10000000 40 > /dev/null
+    41.28u 2.34s 0:43.62
+
+(b) State the performance difference between the two versions of the program, and what caused the difference.
+    Without optimization, the STR version runs about 3 times slower than the original version
+    With optimization, the performance difference between 2 versions got shortened. Now the STR version runs only about 2 times slower than the original version.
+
+    The reason behinds it I think is the frequent accessing to an array. Everytime we access intbuf[i], we search from the front of the array. While appending string to a string object may only require a moving of string.end(), which is faster than array accessing.
+
+(c) State the performance difference between the original and tranformed programs when compiler optimization is used.
+    There are subtle performance difference between the original version and the original Optimized version, almost neglectable.
+    While the optimization improved the performance of the STR version by about 33% of its original runtime.

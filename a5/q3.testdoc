@@ -1,0 +1,468 @@
+TallyVotes Test Documentation (Q3)
+=================================
+This program simulates some tourist voting simultineously using given or defualt settings.
+
+
+User Interface Testing:
+    There is no user interface to be tested, so the testing focuses solely on the algorithm used for the conversion.
+
+ALGORITHM TESTING
+
+  TEST 1:
+  -------
+    DATA DESCRIPTION
+    We feed the program with different input, and check whether the program will have the output as expected:
+    Every test ran five times for different implementation of TallyVotes respectively.
+ 
+EXT version: Script started on Sat Nov 18 15:09:20 EST 2017
+-----------
+
+1 @ubuntu1604-008% ./vote 1 1
+V0	
+*******	
+S	
+V 2,1,0	
+C	
+F p	
+*****************
+All tours started
+
+2 @ubuntu1604-008% ./vote 12 12
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+	S							S				
+	V 2,0,1											
+	B 1							V 2,1,0				
+S								B 2				
+V 1,0,2												
+B 3		S	S									
+			V 2,1,0									
+		V 1,2,0	B 4						S			
+		B 5							V 1,2,0			
+							S		B 6			
+							V 1,0,2					
+						S	B 7			S		
+										V 0,2,1		
+						V 1,0,2				B 8		
+				S	S	B 9					S	
+					V 2,1,0							
+					B 10						V 2,1,0	
+				V 2,0,1							B 11	
+				C							U 10	
+				F p	U 9	U 8					F p	
+					F p	F p	U 6			U 7		
+		U 4					F p		U 5	F p		
+U 2		F p	U 3						F p			
+F p	U 0		F p					U 1				
+	F p							F p				
+*****************
+All tours started
+
+3 @ubuntu1604-008% ./vote 16 4 16219
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	V12	V13	V14	V15	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+						S										
+						V 2,1,0										
+				S		B 1										
+				V 2,1,0												
+				B 2					S							
+									V 1,0,2							
+									B 3			S		S		
+												V 1,0,2				
+									U 2			C				
+			S	U 1		U 0			F p			F p				
+				F p										V 1,2,0		
+			V 0,1,2			F p	S				S			B 1		
+			B 2				V 2,0,1									
+							B 3			S	V 2,1,0					
+							U 2				C					
+S			U 1		S		F p				F p			U 0		
+		S	F p							V 1,0,2						
+V 0,2,1										B 1				F p		
+B 2	S				V 1,0,2			S							S	
+		V 0,1,2			B 3											
+		C			U 2											
+U 1		F g			F g					U 0			S			
+F g															V 2,1,0	
+	V 2,0,1									F g					B 1	
+	B 2							V 0,2,1								
+								B 3					V 1,2,0			
+								U 2					C			
+	U 1							F p					F p		U 0	
+	F p														F p	
+*****************
+All tours started
+4 script done on Sat Nov 18 15:09:20 EST 2017
+
+
+INT version: Script started on Sat Nov 18 15:09:26 EST 2017
+-----------
+
+1 @ubuntu1604-008% ./vote 1 1
+V0	
+*******	
+S	
+V 0,2,1	
+C	
+F s	
+*****************
+All tours started
+
+2 @ubuntu1604-008% ./vote 12 12
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+										S		
+										V 2,0,1		
+								S		B 1		
+								V 2,0,1				
+S								B 2	S			
+									V 2,0,1			
+V 1,0,2									B 3			
+B 4		S	S									
+		V 0,1,2										
+		B 5	V 0,1,2									
+			B 6		S	S						
+						V 0,1,2						
+					V 1,2,0	B 7						
+	S			S	B 8							
+	V 0,2,1											
+	B 9			V 0,1,2								
+				B 10			S				S	
+											V 2,0,1	
+							V 2,0,1				B 11	
+							C			U 10		
+							F g	U 9	U 8	F g		
+U 7		U 6						F g	F g			
+F g		F g	U 5			U 4						
+	U 2		F g		U 3	F g						
+	F g			U 1	F g						U 0	
+				F g							F g	
+*****************
+All tours started
+
+3 @ubuntu1604-008% ./vote 16 4 16219
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	V12	V13	V14	V15	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+						S										
+						V 2,1,0										
+				S		B 1										
+				V 2,1,0												
+				B 2					S							
+									V 1,0,2							
+									B 3			S		S		
+												V 1,0,2				
+						U 2						C				
+			S	U 1		F p			U 0			F p				
+				F p										V 1,2,0		
+			V 0,1,2				S		F p		S			B 1		
+			B 2				V 2,0,1									
+							B 3			S	V 2,1,0					
+											C			U 2		
+S			U 1		S		U 0				F p			F p		
+		S	F p							V 1,0,2						
+V 0,2,1							F p			B 1						
+B 2	S				V 1,0,2			S							S	
+		V 0,1,2			B 3											
+		C								U 2						
+U 1		F g			U 0					F g			S			
+F g															V 2,1,0	
+	V 2,0,1				F g										B 1	
+	B 2							V 0,2,1								
+								B 3					V 1,2,0			
+													C		U 2	
+	U 1							U 0					F p		F p	
+	F p							F p								
+*****************
+All tours started
+4 script done on Sat Nov 18 15:09:26 EST 2017
+
+
+INTB version: Script started on Sat Nov 18 15:09:32 EST 2017
+------------
+
+1 @ubuntu1604-008% ./vote 1 1
+V0	
+*******	
+S	
+V 0,1,2	
+C	
+F g	
+*****************
+All tours started
+
+2 @ubuntu1604-008% ./vote 12 12
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+S									S			
+V 0,2,1												
+B 1									V 2,1,0			
+		S							B 2			
+		V 1,0,2										
+		B 3									S	
+											V 1,2,0	
+			S								B 4	
+			V 0,2,1									
+			B 5			S	S					
+							V 2,0,1					
+				S		V 0,1,2	B 6			S		
+						B 7				V 0,2,1		
+				V 2,1,0						B 8		
+				B 9	S			S				
+					V 0,2,1							
+					B 10			V 1,0,2				
+	S							B 11				
+	V 0,1,2											
+	C							U 10				
+	F s			U 8	U 9			F s				
+				F s	F s	U 6				U 7		
+			U 4			F s	U 5			F s		
+		U 2	F s				F s				U 3	
+U 0		F s							U 1		F s	
+F s									F s			
+*****************
+All tours started
+
+3 @ubuntu1604-008% ./vote 16 4 16219
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	V12	V13	V14	V15	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+						S										
+						V 2,1,0										
+				S		B 1										
+				V 2,1,0												
+				B 2					S							
+									V 1,0,2							
+									B 3			S		S		
+												V 1,0,2				
+									U 2			C				
+			S	U 1					F p			F p				
+				F p		U 0	S			S	S			b		
+			V 0,1,2			F p										
+S			B 1		S									V 1,2,0		
+							V 1,0,2							B 2		
+		S					B 3				V 0,2,1					
+											C					
+	S						U 2	S		b	F g				S	
+b							F g						S	U 1		
+			U 0		b									F g		
+					V 2,0,1											
+V 2,1,0			F g		B 1											
+B 2		V 0,2,1														
+		B 3								V 0,2,1						
+										C						
+	b	U 2								F s					b	
+U 1		F s						b								
+F s					U 0								b			
+													V 1,2,0			
+					F s			V 1,2,0					B 1			
+	V 0,2,1							B 2								
+	B 3														V 0,1,2	
+	U 2														C	
+	F s							U 1					U 0		F s	
+								F s					F s			
+*****************
+All tours started
+4 script done on Sat Nov 18 15:09:32 EST 2017
+
+
+AUTO version: Script started on Sat Nov 18 15:09:38 EST 2017
+------------
+
+1 @ubuntu1604-008% ./vote 1 1 
+V0	
+*******	
+S	
+V 2,0,1	
+C	
+F p	
+*****************
+All tours started
+
+2 @ubuntu1604-008% ./vote 12 12 
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+			S						S			
+									V 1,2,0			
+S			V 2,0,1						B 1			
+V 0,2,1			B 2									
+B 3	S					S						
+						V 2,0,1						
+	V 2,1,0	S				B 4						
+	B 5	V 0,2,1		S			S					
+		B 6					V 1,2,0			S		
+				V 1,2,0			B 7				S	
+				B 8	S					V 2,0,1		
+								S		B 9	V 2,0,1	
+					V 0,1,2						B 10	
+					B 11			V 1,2,0				
+						U 10		C				
+	U 8					F p		F p	U 9			
+U 7	F p	U 6							F p			
+F p		F p			U 5						U 4	
+				U 2	F p					U 3	F p	
+			U 0	F p			U 1			F p		
+			F p				F p					
+*****************
+All tours started
+
+3 @ubuntu1604-008% ./vote 12 4 16219
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	V12	V13	V14	V15	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+						S										
+						V 2,1,0										
+				S		B 1										
+				V 2,1,0												
+				B 2					S							
+									V 1,0,2							
+									B 3			S		S		
+												V 1,0,2				
+B
+				U 2								C				
+			S	F p		U 0			U 1			F p				
+									F p					V 1,2,0		
+			V 0,1,2			F p	S				S			B 1		
+			B 2				V 2,0,1			S						
+S					S		B 3				V 2,1,0					
+		S	U 2								C					
+	S		F p				U 1	S			F p			U 0	S	
+							F p			V 1,0,2						
+V 0,2,1										B 1				F p		
+B 2					V 1,0,2								S			
+		V 0,1,2			B 3											
+U 2		C														
+F g		F g			U 1					U 0						
+					F g										V 2,1,0	
+	V 2,0,1									F g					B 1	
+	B 2							V 0,2,1								
+								B 3					V 1,2,0			
+	U 2												C			
+	F p							U 1					F p		U 0	
+								F p							F p	
+*****************
+All tours started
+4 script done on Sat Nov 18 15:09:38 EST 2017
+
+
+TASK version: Script started on Sat Nov 18 15:09:45 EST 2017
+------------
+
+1 @ubuntu1604-008% ./vote 1 1
+V0	
+*******	
+S	
+V 1,2,0	
+B 1	
+C	
+U 0	
+F s	
+*****************
+All tours started
+
+2 @ubuntu1604-008% ./vote 12 12
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+		S	S								S	
+		V 0,1,2										
+		B 1	V 1,2,0					S				
+			B 2	S							V 2,0,1	
+								V 0,2,1	S		B 3	
+				V 2,1,0	S			B 4				
+				B 5					V 2,1,0			
+					V 2,0,1	S	S		B 6			
+	S				B 7		V 2,1,0			S		
+S						V 1,0,2	B 8					
+						B 9				V 2,1,0		
+	V 1,2,0									B 10		
+V 1,0,2	B 11											
+B 12												
+C		U 11	U 10									
+		F p	F p					U 8			U 9	
+				U 7				F p	U 6		F p	
+				F p	U 5		U 4		F p			
+					F p	U 3	F p			U 2		
+U 0	U 1					F p				F p		
+F p	F p											
+*****************
+All tours started
+
+3 @ubuntu1604-008% ./vote 16 4 16219
+V0	V1	V2	V3	V4	V5	V6	V7	V8	V9	V10	V11	V12	V13	V14	V15	
+*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	*******	
+				S		S										
+						V 2,1,0										
+				V 2,1,0		B 1			S							
+				B 2					V 1,0,2			S		S		
+									B 3			V 1,0,2				
+												B 4				
+			S	U 2		U 3						C				
+				F p		F p	S		U 1	S	S	U 0				
+S		S			S				F p			F p		V 1,2,0		
+	S		V 0,1,2					S						B 1	S	
+			B 2				V 2,0,1						S			
+							B 3				V 2,1,0					
+											B 4					
+			U 2								C			U 3		
+			F p				U 1				U 0			F p		
+							F p			V 1,0,2	F p					
+V 0,2,1										B 1						
+B 2					V 1,0,2											
+		V 0,1,2			B 3											
+		B 4														
+U 2		C								U 3						
+F g		U 0			U 1					F g						
+		F g			F g										V 2,1,0	
+	V 2,0,1														B 1	
+	B 2							V 0,2,1								
+								B 3					V 1,2,0			
+													B 4			
+	U 2												C		U 3	
+	F p							U 1					U 0		F p	
+								F p					F p			
+*****************
+All tours started
+4 script done on Sat Nov 18 15:09:45 EST 2017
+
+    ANALYSIS
+      The results from running the program on given input show that:
+      1) The program can run normally on various settings, and successfully
+         keep the stability across different implementations.
+      2) The mutual exclusion and barging prevention work as expected, and the
+         normal execution is not disturbed at all.
+      3) Compared to the sample executable (EXT, INT and TASK version), the outputs are exactly the same,
+         indicating that the usage of random number in the program is implemented correctly.
+
+      From this we can say that each condition in the main loop has been
+      exercised, and the basic voting/synchronization/printing algorithms have been shown to be correct.
+
+  TEST 2:
+  -------
+    DATA DESCRIPTION
+    I am going to feed the programe with illegal input. It is to verify that
+    the programe can detect input error promptly. Each test runs only once as the command-line
+    handling mechanism stands alone from the implementation of TallyVotes
+
+  TESTING
+    Here is the script-fixed log of the testing performed with line numbers
+    attached.
+
+    1 Script started on Sat Nov 18 15:10:02 EST 2017
+    2 @ubuntu1604-008% ./vote -1
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    3 @ubuntu1604-008% ./vote 6 -1
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    4 @ubuntu1604-008% ./vote 6 5
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    5 @ubuntu1604-008% ./vote 6 3 -1
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    6 @ubuntu1604-008% ./vote 1000000000000000000000 5 1234
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    7 @ubuntu1604-008% ./vote a
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    8 @ubuntu1604-008% ./vote 3.5 0.7
+    Usage: ./vote  Voters (> 0 & V mod G = 0, default 6)  Group (> 0, default 3)  Seed (> 0)
+    7 Script done on Sat Nov 18 15:10:45 EST 2017
+
+    ANALYSIS
+    The results show that the program can detect illegal input and output
+    correct warning message. Line 4 reviles that even the input satisfies
+    the requirement, it will still be rejected if it breaks internal functions.
+    Thus the basic input processing algorithm is shown to be correct.

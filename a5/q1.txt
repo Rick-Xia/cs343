@@ -1,0 +1,28 @@
+(a) Include both timing results to validate your experience.
+    Executables ./q1origin and ./q1PAD represents different version respectively
+     experiences ran with arguments 2000000000
+
+    1 @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./q1origin 2000000000
+    0x644c10 0x644c08 0x644c00 0x644bf8 
+    2000000000
+    2000000000
+    20.49u 0.03s 0:10.31
+    2 @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./q1PAD 2000000000
+    0x644cc0 0x644c80 0x644c40 0x644c00 
+    2000000000
+    2000000000
+    9.09u 0.01s 0:04.67
+
+(b) Explain the relative difference in the timing results with respect to memory location of the counters.
+    With the PAD defined, the program runs about 100% faster on both user time and real time. I think the reason behind it
+     is that in the PAD defined version, where the variables were aligned on 64-byte boundaries, it is easier for the CPU
+     to calculate the address as variables are already aligned on 0x40.
+
+(c) Explain the order of addresses of the global variables.
+    For the original version of the program, the memory addresses are: 0x644c10 0x644c08 0x644c00 0x644bf8, the distance
+     between is 0x08, the size of a long int
+    For the PAD version of the program, the memory addresses are: 0x644cc0 0x644c80 0x644c40 0x644c00, the distance
+     between is 0x40, the size of alignment
+
+(d) Explain why there is a void * cast before each counter when printing their address.
+    Without the cast, the ostream will fail to print the value as an address; instead, those addresses will be regared as INTs and get printed.

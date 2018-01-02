@@ -1,0 +1,23 @@
+i. Inlcude all 7 timing results to validate your experiments.
+
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 0
+    15.03u 5.13s 0:20.11
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 1
+    15.34u 8.93s 0:16.46
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 2
+    15.70u 9.38s 0:13.86
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 3
+    16.23u 9.54s 0:12.41
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 4
+    18.69u 9.44s 0:11.55
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 5
+    25.02u 9.28s 0:11.17
+    @ubuntu1604-006% /usr/bin/time -f "%Uu %Ss %E" ./quicksort -t 500000000 6
+    30.21u 9.26s 0:10.98
+
+ii. State the observed performance difference with respect to scaling when using differnt numbers of precessors to achieve parallelism.
+    As what the results show, the real runtime is decreasing as the number of depth increases. However, the user runtime is keep growing. The speedup of real runtime seems like sub-linear, while that of user runtime looks like non-linear.
+
+iii. Very briefly speculate on the program behaviour.
+    As we are running the experiments in the linux student environment which has 64 processors, our experiments did not exceed the number of processors, as 2^6 = 64, which indicates that the increase of the depth would not reduce performance but would increase performance. Hence the real runtime is decreasing. However, as the number of tasks increases, more CPU time are needed for handling code, which explains the growth in the user runtime.
+

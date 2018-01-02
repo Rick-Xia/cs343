@@ -1,0 +1,29 @@
+
+i.	The original program always have one more "~" printed when an exception is handled. This is because that after an exception is raised by throw, it does stack unwinding and hence all structures on the stack get properly destroyed. However, the setjmp/longjmp simply terminates the stack block and since the destructor of T is not activated here, .
+
+ii.	For all experiments, I set the comman-line arguments to be "16 15 66666".
+	Following are the results of different programs( original and transformed, with or without optimisation), each program runs 4 times.
+
+    Without optimisation:
+
+    	q2.cc:
+    	54.52u ; 58.48u ; 56.38u ; 55.70u
+
+
+	q2longjmp.cc:
+	6.09u ; 6.15u ; 6.46u ; 6.28u
+
+
+    The performance difference between the original program and the transformed program is not trivial. According to the result, the longjmp program runs about 10 time faster than the original program.
+    The difference is, I believe, caused by their different non-local transfer method. The original program uses try/catch for exception handling, which does a linear search for the exception handler(the catch block) when an exception is raised. However, this method is much slower than the setjmp/longjmp method used by the transformed program, for it saves the label variable in the jmp_buf and directly goes to it when an exception is raised. No searching envolved here. Besides, the setjmp/longjmp does not clean up the stack but terminates it, which also makes setjmp/longjmp swift.
+
+    With optimisation:
+
+    	q2.cc:
+	62.40u ; 65.34u ; 62.75u ; 61.60u
+
+
+    	q2longjmp.cc:
+	6.28u ; 5.78u ; 5.91u ; 5.66u
+
+    After been optimized during the compilation, The setjmp/longjmp seems not change much in timing. While the original program are actually running more slowly( about 5s slower in this case ). Since the timing of the setjmp/longjmp does not change and that of the try/catch became longer, the performce difference between two programs became bigger.
